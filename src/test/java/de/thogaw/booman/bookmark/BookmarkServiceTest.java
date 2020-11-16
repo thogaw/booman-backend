@@ -23,16 +23,26 @@
 
 package de.thogaw.booman.bookmark;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.jdbc.Sql;
 
-@Service
-@Slf4j
-class BookmarkServiceImpl implements BookmarkService {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    private final BookmarkRepository repository;
+@SpringBootTest
+class BookmarkServiceTest {
 
-    BookmarkServiceImpl(BookmarkRepository repository) {
-        this.repository = repository;
+    @Autowired
+    private BookmarkService service;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Test
+    @Sql("/fixtures/bookmarks.sql")
+    void testFindAll() {
+        var all = service.findAll();
+        assertThat(all.size()).isEqualTo(2);
     }
 }

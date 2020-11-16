@@ -21,30 +21,6 @@
  *
  */
 
-package de.thogaw.booman.bookmark.web;
-
-import de.thogaw.booman.bookmark.BookmarkService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-@Slf4j
-@Controller
-@RequestMapping(value = "/bookmarks", produces = MediaType.TEXT_HTML_VALUE)
-public class BookmarkController {
-
-    private final BookmarkService service;
-
-    public BookmarkController(BookmarkService service) {
-        this.service = service;
-    }
-
-    @GetMapping
-    public String bookmarksList(Model model) {
-        model.addAttribute("bookmarks", service.findAll());
-        return "bookmarks/index";
-    }
-}
+INSERT INTO bookmark ("name", url)
+VALUES ('Google', 'https://www.google.de'),
+       ('Github', 'https://www.github.com');

@@ -23,5 +23,27 @@
 
 package de.thogaw.booman.bookmark;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 public interface BookmarkService {
+    List<Bookmark> findAll();
+}
+
+@Service
+@Slf4j
+class BookmarkServiceImpl implements BookmarkService {
+
+    private final BookmarkRepository repository;
+
+    BookmarkServiceImpl(BookmarkRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public List<Bookmark> findAll() {
+        return repository.findAll();
+    }
 }

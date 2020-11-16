@@ -22,7 +22,7 @@
  */
 
 CREATE DOMAIN url AS text check (VALUE ~
-                                 'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#()?&//=]*)');
+                                 '^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&''\(\)\*\+,;=.]+$');
 COMMENT ON DOMAIN url IS 'match URLs (http or https)';
 
 CREATE TABLE "bookmark"
